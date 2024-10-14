@@ -50,7 +50,7 @@ export function HeroSection() {
   return (
     <div className="container mx-auto px-4 md:px-8 lg:px-12 py-4 grid gap-2">
       <h4 className="text-pink-600 font-semibold">Hi, my name is</h4>
-      <h1 className="font-extrabold text-6xl border-b border-gray-200/20 w-max pb-4 mb-4">
+      <h1 className="font-extrabold text-6xl border-b border-gray-200/20 pb-4 mb-4">
         Obuya Erick.
       </h1>
       <div className="grid grid-cols-5 gap-4">

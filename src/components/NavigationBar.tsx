@@ -1,7 +1,7 @@
 import { Bars4Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useSpring, animated } from "@react-spring/web";
 import { NavLink } from "react-router-dom";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { ScrollContext } from "../App";
 import { Resume } from "../assets/docs/Docs";
 
@@ -10,6 +10,15 @@ const tabs = [
   { title: "Experience", path: "#experience" },
   { title: "Projects", path: "#projects" },
 ];
+
+const ResumeLink: React.FC<{ className?: string }> = ({ className }) => (
+  <a
+    href={`${Resume}`}
+    className={`px-4 border border-pink-700 rounded text-pink-700 hover:text-white hover:bg-pink-700 duration-300 flex items-center ${className}`}
+  >
+    Resume
+  </a>
+);
 
 export function NavigationBar() {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -51,12 +60,7 @@ export function NavigationBar() {
               </NavLink>
             ))}
           </div>
-          <a
-            href={`${Resume}`}
-            className="px-4 border border-pink-700 rounded text-pink-700 hover:text-white hover:bg-pink-700 duration-300 flex items-center"
-          >
-            Resume
-          </a>
+          <ResumeLink />
         </div>
 
         {/* Small Screen */}
@@ -95,6 +99,7 @@ export function NavigationBar() {
               {tab.title}
             </NavLink>
           ))}
+          <ResumeLink className="justify-center" />
         </div>
       </animated.div>
     </div>

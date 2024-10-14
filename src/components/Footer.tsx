@@ -4,7 +4,7 @@ import { devLinks } from "./HeroSection";
 export default function Footer() {
   return (
     <div className="border-t border-gray-200/20 bg-black">
-      <div className="container mx-auto p-4 flex items-center justify-between text-sm">
+      <div className="container mx-auto p-4 flex items-center flex-col gap-4 md:flex-row md:justify-between text-sm">
         <span>
           {new Date().getFullYear()}&nbsp;&copy; erickochieng766@gmail.com
         </span>
