@@ -1,0 +1,119 @@
+.hexagon {
+  position: relative;
+  height: 70px;
+  width: 60px;
+  background: #0c0a09;
+}
+.hexagon:before,
+.double:after {
+  position: absolute;
+  content: "";
+}
+.hexagon:before {
+  top: 4px; /* border width */
+  left: 4px; /* border width */
+  height: calc(100% - 8px); /* 100% - (2 * border width) */
+  width: calc(100% - 8px); /* 100% - (2 * border width) */
+  background: rgb(219, 39, 119);
+}
+.hexagon,
+.hexagon:before,
+.double:after {
+  -webkit-clip-path: polygon(
+    50% 0%,
+    100% 25%,
+    100% 75%,
+    50% 100%,
+    0% 75%,
+    0% 25%
+  );
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+.double:after {
+  top: 8px;
+  left: 8px;
+  height: calc(100% - 16px);
+  width: calc(100% - 16px);
+  background: #0c0a09;
+}
+
+/* Just for demo */
+
+.hexagon {
+  display: inline-block;
+  margin: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.vertical-scrollbar,
+.zero-size-vertical-scrollbar {
+  overflow-y: scroll;
+}
+
+.horizontal-scrollbar,
+.zero-size-horizontal-scrollbar {
+  overflow-x: scroll;
+}
+
+.zero-size-vertical-scrollbar::-webkit-scrollbar {
+  width: 0px;
+}
+
+.zero-size-horizontal-scrollbar::-webkit-scrollbar {
+  height: 0px;
+}
+
+.vertical-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  background-color: rgb(219 39 119 / 0.3);
+  border-radius: 20px;
+}
+
+.horizontal-scrollbar::-webkit-scrollbar {
+  height: 5px;
+  background-color: rgb(219 39 119 / 0.3);
+  border-radius: 20px;
+}
+
+.horizontal-scrollbar::-webkit-scrollbar-thumb,
+.vertical-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgb(219 39 119);
+  border-radius: 20px;
+}
+
+.swiper-pagination-bullet,
+.swiper-pagination-bullet-active {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+.swiper-pagination-bullet {
+  opacity: 0.2 !important;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+}
+
+.swiper-on-green .swiper-pagination-bullet,
+.swiper-on-green .swiper-pagination-bullet-active {
+  background: rgb(255, 255, 255) !important;
+}
+
+.swiper-bullets-green .swiper-pagination-bullet,
+.swiper-bullets-green .swiper-pagination-bullet-active {
+  background: rgb(219, 39, 119) !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  color: rgb(219, 39, 119);
+  background-color: rgb(219 39 119 / 0.3);
+  font-size: 24px;
+  padding: 8px 12px;
+  border-radius: 10px;
+}
+
