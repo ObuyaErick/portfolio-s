@@ -17,7 +17,7 @@ export default function Footer() {
                 to={href}
                 key={index}
               >
-                <span>{icon}</span>
+                <span className="flex items-center">{icon}</span>
               </NavLink>
             ))}
           </div>

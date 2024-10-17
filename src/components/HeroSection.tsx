@@ -6,11 +6,12 @@ import {
 } from "@heroicons/react/24/outline";
 import { ControlledAccordions } from "./accordions/ControlledAccordions";
 import clsx from "clsx";
-import { Facebook, GitHub, LinkedIn } from "@mui/icons-material";
+import { GitHub, LinkedIn } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
 import { projects } from "./Projects";
 import { useContext } from "react";
 import { ScrollContext } from "../App";
+import Discord from "./svg-icons/Discord";
 
 const contacts = [
   {
@@ -39,7 +40,7 @@ export const devLinks = [
   },
   {
     platform: "Facebook",
-    icon: <Facebook fontSize="inherit" />,
+    icon: <Discord className="h-8 w-8" />,
     href: "https://github.com/erick-sudo",
   },
 ];
@@ -77,7 +78,7 @@ export function HeroSection() {
                 to={href}
                 key={index}
               >
-                <span>{icon}</span>
+                <span className="flex items-center">{icon}</span>
               </NavLink>
             ))}
           </div>
