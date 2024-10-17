@@ -41,7 +41,7 @@ export const devLinks = [
   {
     platform: "Facebook",
     icon: <Discord className="h-8 w-8" />,
-    href: "https://github.com/erick-sudo",
+    href: "https://discord.com/users/erick0349",
   },
 ];
 
