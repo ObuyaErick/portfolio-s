@@ -68,4 +68,5 @@ export const ProjectScreenShots = {
     Macbook_Air_localhost_png,
     Xiaomi_Mi_11i_localhost_png,
   ],
+  WonderWedding: [],
 };

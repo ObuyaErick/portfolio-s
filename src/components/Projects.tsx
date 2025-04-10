@@ -14,6 +14,7 @@ import {
   Navigation,
   Pagination,
 } from "swiper/modules";
+import { Masonry } from "@mui/lab";
 
 interface IProject {
   github: string;
@@ -26,7 +27,16 @@ interface IProject {
 
 export const projects: IProject[] = [
   {
-    github: "https://github.com/erick-sudo/e-ventured-web",
+    github: "",
+    images: ProjectScreenShots.WonderWedding,
+    name: "WonderWedding",
+    live: "https://wonderwedding.app",
+    description:
+      "Currently contributing to a crowdfunding platform designed specifically for couples to fund their dream weddings. Friends and family can contribute to specific wedding elements, track funding progress, and leave heartfelt messages. The app offers seamless payment processing, personalized wedding pages, and real-time updates for both couples and guests.",
+    techStack: ["Flutter", "Dart", "Firebase", "Cloud Functions", "Stripe API"],
+  },
+  {
+    github: "https://github.com/ObuyaErick/e-ventured-web",
     images: ProjectScreenShots.EntryVentures,
     name: "Entry Ventures",
     live: "https://e-ventured-web.vercel.app/dashboard",
@@ -53,7 +63,7 @@ export const projects: IProject[] = [
     techStack: ["Java", "Kotlin", "Compose Multiplatform", "Coroutines"],
   },
   {
-    github: "https://github.com/erick-sudo/numbersystemconversion",
+    github: "https://github.com/ObuyaErick/numbersystemconversion",
     images: ProjectScreenShots.NumberSystemConverter,
     name: "Number System Converter",
     live: "https://numbersystemconversion-erick.vercel.app/",
@@ -81,22 +91,25 @@ export function Projects() {
     <div id="projects" className="container mx-auto px-4 py-12 my-12">
       <h3 className="py-2 text-pink-600 font-semibold">Previous Work</h3>
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <Masonry columns={{ xs: 1, sm: 2, lg: 3 }} spacing={2}>
+        {/* <div className="grid gap-4 md:grid-cols-2"> */}
         {projects.map(
-          ({ name, description, techStack, github, live }, index) => (
+          ({ name, description, techStack, github, live, images }, index) => (
             <div
               id={`project_${index}`}
               onClick={() => {
                 setSelectedProject(index);
               }}
               key={index}
-              className="bg-stone-800/20 shadow-lg group shadow-black rounded-xl overflow-hidden border border-gray-300/10"
+              className="bg-stone-800/20 shadow-lg group cursor-pointer duration-200 hover:scale-105 rounded-xl overflow-hidden border border-gray-300/10"
             >
               <div className="p-4">
-                <h3 className="py-4 text-pink-200 uppercase font-bold">
-                  {name}
-                </h3>
-                <div>{description}</div>
+                <div className="transition-opacity duration-300 opacity-70 group-hover:opacity-100">
+                  <h3 className="py-4 text-pink-200 uppercase font-bold">
+                    {name}
+                  </h3>
+                  <div>{description}</div>
+                </div>
 
                 <div className="flex flex-wrap gap-y-1.5 gap-x-2 py-2">
                   {techStack.map((stck, idx) => (
@@ -114,87 +127,94 @@ export function Projects() {
                       <GlobeAltIcon height={28} />
                     </NavLink>
 
-                    <NavLink to={github}>
-                      <GitHub height={28} />
-                    </NavLink>
+                    {github && (
+                      <NavLink to={github}>
+                        <GitHub height={28} />
+                      </NavLink>
+                    )}
                   </div>
 
-                  <ManualModal
-                    contentClassName="max-w-2xl mx-auto"
-                    viewPortClassName="bg-stone-800 shadow-md shadow-black"
-                    anchorClassName="cursor-pointer px-4 py-1 text-pink-400 flex items-center gap-2 border border-gray-300/10 rounded-lg hover:bg-pink-700 hover:text-white duration-300 hover:scale-105"
-                    anchorContent={
-                      <>
-                        <span>Preview</span>
-                        <Fullscreen />
-                      </>
-                    }
-                  >
-                    <div>
-                      {previewingProject && (
-                        <div className="grid grid-cols-1 swiper-bullets-green">
-                          <Swiper
-                            loop
-                            autoplay={{
-                              delay: 5000,
-                              pauseOnMouseEnter: true,
-                            }}
-                            breakpoints={{
-                              320: {
-                                slidesPerView: 1,
-                                spaceBetween: 10,
-                              },
+                  {images.length ? (
+                    <ManualModal
+                      contentClassName="max-w-2xl mx-auto"
+                      viewPortClassName="bg-stone-800 shadow-md shadow-black"
+                      anchorClassName="cursor-pointer px-4 py-1 text-pink-400 flex items-center gap-2 border border-gray-300/10 rounded-lg hover:bg-pink-700 hover:text-white duration-300 hover:scale-105"
+                      anchorContent={
+                        <>
+                          <span>Preview</span>
+                          <Fullscreen />
+                        </>
+                      }
+                    >
+                      <div>
+                        {previewingProject && (
+                          <div className="grid grid-cols-1 swiper-bullets-green">
+                            <Swiper
+                              loop
+                              autoplay={{
+                                delay: 5000,
+                                pauseOnMouseEnter: true,
+                              }}
+                              breakpoints={{
+                                320: {
+                                  slidesPerView: 1,
+                                  spaceBetween: 10,
+                                },
 
-                              1280: {
-                                slidesPerView: 2,
-                                spaceBetween: 10,
-                              },
-                            }}
-                            spaceBetween={10}
-                            mousewheel
-                            freeMode
-                            speed={500}
-                            tabIndex={0}
-                            keyboard
-                            pagination={{
-                              clickable: true,
-                            }}
-                            navigation
-                            className="w-full mx-auto"
-                            effect={"slide"}
-                            grabCursor={true}
-                            modules={[
-                              EffectCoverflow,
-                              Keyboard,
-                              Pagination,
-                              Mousewheel,
-                              FreeMode,
-                              Autoplay,
-                              Navigation,
-                            ]}
-                          >
-                            {previewingProject.images.map((image, index) => (
-                              <SwiperSlide key={index}>
-                                <div className="rounded overflow-hidden h-96 mb-12 flex items-center justify-center">
-                                  <img
-                                    alt={previewingProject.name}
-                                    src={image}
-                                    className="h-full object-contain"
-                                  />
-                                </div>
-                              </SwiperSlide>
-                            ))}
-                          </Swiper>
-                        </div>
-                      )}
-                    </div>
-                  </ManualModal>
+                                1280: {
+                                  slidesPerView: 2,
+                                  spaceBetween: 10,
+                                },
+                              }}
+                              spaceBetween={10}
+                              mousewheel
+                              freeMode
+                              speed={500}
+                              tabIndex={0}
+                              keyboard
+                              pagination={{
+                                clickable: true,
+                              }}
+                              navigation
+                              className="w-full mx-auto"
+                              effect={"slide"}
+                              grabCursor={true}
+                              modules={[
+                                EffectCoverflow,
+                                Keyboard,
+                                Pagination,
+                                Mousewheel,
+                                FreeMode,
+                                Autoplay,
+                                Navigation,
+                              ]}
+                            >
+                              {previewingProject.images.map((image, index) => (
+                                <SwiperSlide key={index}>
+                                  <div className="rounded overflow-hidden h-96 mb-12 flex items-center justify-center">
+                                    <img
+                                      alt={previewingProject.name}
+                                      src={image}
+                                      className="h-full object-contain"
+                                    />
+                                  </div>
+                                </SwiperSlide>
+                              ))}
+                            </Swiper>
+                          </div>
+                        )}
+                      </div>
+                    </ManualModal>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
             </div>
           )
         )}
-      </div>
+        {/* </div> */}
+      </Masonry>
     </div>
   );
 }

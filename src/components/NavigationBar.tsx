@@ -92,14 +92,14 @@ export function NavigationBar() {
           {tabs.map((tab, index) => (
             <NavLink
               onClick={() => scrollTo(tab.path)}
-              className="hover:bg-stone-950 rounded px4 py-2 text-sm hover:ring-1 hover:ring-pink-700/80 hover:text-pink-600 duration-300 flex items-center justify-center"
+              className=" transition-all duration-300 hover:bg-stone-950 rounded px4 py-2 text-sm hover:ring-1 hover:ring-pink-700/80 hover:text-pink-600 flex items-center justify-center"
               key={index}
               to={tab.path}
             >
               {tab.title}
             </NavLink>
           ))}
-          <ResumeLink className="justify-center" />
+          <ResumeLink className="justify-center px4 py-1.5" />
         </div>
       </animated.div>
     </div>

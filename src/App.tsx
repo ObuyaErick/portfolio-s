@@ -13,6 +13,8 @@ import { HeroSection } from "./components/HeroSection";
 import { NavigationBar } from "./components/NavigationBar";
 import { Projects } from "./components/Projects";
 import React, { createContext, useEffect, useRef } from "react";
+import { Hobbies } from "./components/Hobbies";
+import { LoginForm } from "./components/LoginForm";
 
 export const ScrollContext = createContext<{
   scrollTo: (selector: string) => void;
@@ -76,6 +78,7 @@ function App() {
           <NavigationBar />
           <HeroSection />
           <Experience />
+          <Hobbies />
           <Projects />
           <Footer />
         </div>
